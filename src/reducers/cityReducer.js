@@ -19,7 +19,6 @@ const carWashDefault = {
 export default (state = defaultState, action) => {
   const { type, payload } = action;
   const selectedCityState = state.carWashMap[state.selectedCity];
-
   switch (type) {
     case WASHERS_SELECT_CITY: {
       const { city } = payload;
@@ -34,6 +33,7 @@ export default (state = defaultState, action) => {
         ...state,
         selectedCity: city,
         carWashMap: {
+          ...state.carWashMap,
           [city]: {
             ...carWashDefault,
             fetching: true,
@@ -45,6 +45,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         carWashMap: {
+          ...state.carWashMap,
           [state.selectedCity]: {
             fetching: false,
             error: false,
@@ -56,6 +57,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         carWashMap: {
+          ...state.carWashMap,
           [state.selectedCity]: {
             ...selectedCityState,
             fetching: false,

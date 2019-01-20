@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, ButtonGroup, Button } from './StyledComponents/citySelectorComponents'
+import { Container, ButtonGroup, Button } from './StyledComponents/CitySelectorComponents'
 
 export default class CitySelector extends Component {
     static propTypes = {
@@ -16,6 +16,15 @@ export default class CitySelector extends Component {
         selectedIndex: 0,
     };
 
+    componentDidMount() {
+        const {
+            cityArray,
+            selectedIndex,
+            onSelect,
+        } = this.props;
+        onSelect(cityArray[selectedIndex], selectedIndex);
+    }
+
     render() {
         const {
             cityArray,
@@ -28,10 +37,11 @@ export default class CitySelector extends Component {
                 <ButtonGroup>
                     {cityArray.map((city, index) => ((
                         <Button
-                          bgColor={selectedIndex === index ? "#d0b74e" : "#a07629"}
+                          bgColor={selectedIndex === index ? "#0a92dd" : "#0b2d4e"}
                           onClick={() => {
                               onSelect(city, index);
                           }}
+                          key={city}
                         >
                             {city}
                         </Button>

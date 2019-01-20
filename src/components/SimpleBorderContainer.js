@@ -5,7 +5,10 @@ import styled from "styled-components";
 
 export default class CitySelector extends Component {
     static propTypes = {
-        children: PropTypes.element.isRequired,
+        children: PropTypes.oneOfType([
+          PropTypes.element,
+          PropTypes.arrayOf(PropTypes.element),
+        ])
     };
 
     render() {
@@ -23,8 +26,9 @@ export default class CitySelector extends Component {
 
 const Container = styled.div`
   margin: 0 auto;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-self: center;
   border: 1px solid #aaaaaa;
+  min-width: 750px;
 `;

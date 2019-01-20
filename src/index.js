@@ -17,7 +17,7 @@ const persistConfig = { key: 'root', version: 1, storage };
 const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 const reducer = persistReducer(persistConfig, reducers);
-const store = createStore(reducer, compose(applyMiddleware(sagaMiddleware)));
+const store = createStore(reducer, compose(applyMiddleware(sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 const persistor = persistStore(store);
 
 sagaMiddleware.run(saga);

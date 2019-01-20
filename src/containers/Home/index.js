@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { selectCity } from '../../actions';
 import CitySelector from '../../components/CitySelector';
 import SimpleBorderContainer from '../../components/SimpleBorderContainer';
+import WashersList from "../../components/WashersList";
 
 class Home extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class Home extends React.Component {
   render() {
     const {
       selectCity,
+      selectedCityData,
     } = this.props;
     const { selectedCityIndex } = this.state;
 
@@ -27,6 +29,7 @@ class Home extends React.Component {
             })
           }}
         />
+        <WashersList washersData={selectedCityData}/>
       </SimpleBorderContainer>
     );
   }
