@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { YANDEX_API_KEY, CAR_WASHERS_PER_PAGE, SEARCH_REQUEST } from '../constants/config';
 
-const API_KEY = '7ef2c163-9187-4699-8f37-97aaf4796a54';
 const BASE_URL = 'https://search-maps.yandex.ru/v1/';
 
 const api = () => {
@@ -11,11 +11,11 @@ const api = () => {
 
     const getListByCity = (city) => instance.get('/', {
         params: {
-            text: `автомойка, ${city}`,
-            apikey: API_KEY,
+            text: `${SEARCH_REQUEST}, ${city}`,
+            apikey: YANDEX_API_KEY,
             type: 'biz',
             lang: 'RU_ru',
-            results: 50,
+            results: CAR_WASHERS_PER_PAGE,
         }
     });
 

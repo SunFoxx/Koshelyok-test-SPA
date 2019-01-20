@@ -1,0 +1,10 @@
+const YANDEX_API_KEY = '7ef2c163-9187-4699-8f37-97aaf4796a54';
+const SEARCH_REQUEST = 'автомойка';
+const CAR_WASHERS_PER_PAGE = 25;
+
+
+export {
+    YANDEX_API_KEY,
+    CAR_WASHERS_PER_PAGE,
+    SEARCH_REQUEST,
+}
