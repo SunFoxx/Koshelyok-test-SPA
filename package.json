@@ -4,7 +4,7 @@
   "description": "Testing app for Frontend-developer position",
   "main": "/src/index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production parcel build src/index.html",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url ./",
     "start": "cross-env NODE_ENV=development parcel serve src/index.html -p 3002"
   },
   "author": "SunFoxx",
