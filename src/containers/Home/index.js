@@ -1,38 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Counter from '../../components/Counter';
-import { updateCountRequest } from '../../actions';
+import { selectCity } from '../../actions';
+import CitySelector from '../../components/CitySelector';
+import SimpleBorderContainer from '../../components/SimpleBorderContainer';
 
 class Home extends React.Component {
+  state = {
+    selectedCityIndex: 0,
+  };
+
   render() {
     const {
-      status,
-      count,
-      updateCount,
+      selectCity,
     } = this.props;
+    const { selectedCityIndex } = this.state;
 
     return (
-      <Counter
-        status={status}
-        count={count}
-        updateCount={updateCount}
-      />
+      <SimpleBorderContainer>
+        <CitySelector
+          cityArray={['Москва', 'Санкт-Петербург', 'Нижний новгород']}
+          selectedIndex={selectedCityIndex}
+          onSelect={(city, index) => {
+            selectCity(city);
+            this.setState({
+              selectedCityIndex: index,
+            })
+          }}
+        />
+      </SimpleBorderContainer>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
+  const { selectedCity, carWashMap } = state.cityReducer;
+  const selectedCityData = carWashMap[selectedCity];
   return {
-    status: state.someReducer.status,
-    count: state.someReducer.count,
+    selectedCity,
+    carWashMap,
+    selectedCityData,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    updateCount: (newCount) => {
-      dispatch(updateCountRequest(newCount));
-    },
+    selectCity: (city) => dispatch(selectCity(city)),
   };
 };
 
